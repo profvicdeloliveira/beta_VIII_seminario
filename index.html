@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tese IA & Dignidade Autoral | Módulo de Estudo & Defesa Oral</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-body: #070a12;
+            --bg-card: #0f172a;
+            --bg-card-hover: #1e293b;
+            --border-color: rgba(217, 119, 6, 0.25);
+            --border-active: #f59e0b;
+            
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-gold: #fbbf24;
+            --text-cyan: #38bdf8;
+            
+            --accent-gold: #d97706;
+            --accent-gold-glow: rgba(217, 119, 6, 0.3);
+            --accent-blue: #2563eb;
+            --accent-red: #dc2626;
+            --accent-green: #10b981;
+            
+            --font-title: 'Cinzel', Georgia, serif;
+            --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(37, 99, 235, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(217, 119, 6, 0.08) 0%, transparent 40%);
+        }
+
+        /* HEADER INSTITUCIONAL */
+        header {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.25rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .brand-title h1 {
+            font-family: var(--font-title);
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: var(--text-gold);
+            text-transform: uppercase;
+        }
+
+        .brand-title p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
+        .author-badge {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(2, 6, 23, 0.6);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.825rem;
+        }
+
+        .author-badge strong {
+            color: var(--text-main);
+        }
+
+        /* NAVIGATION MODES */
+        .nav-modes {
+            background: #020617;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 0.75rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .mode-tabs {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 0.25rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.6rem 1.25rem;
+            border-radius: 0.5rem;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .tab-btn.active {
+            background: var(--accent-gold);
+            color: #000;
+            font-weight: 700;
+            box-shadow: 0 0 15px var(--accent-gold-glow);
+        }
+
+        .search-filter-box {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .search-input {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            outline: none;
+            width: 220px;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--text-gold);
+        }
+
+        .category-select {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* MAIN LAYOUT */
+        main {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        .view-section {
+            display: none;
+            animation: fadeIn 0.35s ease forwards;
+        }
+
+        .view-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* MODE 1: FLASHCARDS INTERATIVOS */
+        .flashcards-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            max-width: 720px;
+            background: rgba(255, 255, 255, 0.05);
+            height: 8px;
+            border-radius: 9999px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .progress-fill-mastered {
+            background: var(--accent-green);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-fill-review {
+            background: var(--accent-gold);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .stats-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .card-stage {
+            width: 100%;
+            max-width: 720px;
+            height: 440px;
+            perspective: 1200px;
+            cursor: pointer;
+        }
+
+        .flashcard-3d {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 1.25rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .flashcard-3d.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 1.25rem;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid var(--border-color);
+            background: linear-gradient(145deg, #0f172a 0%, #090d16 100%);
+        }
+
+        .card-face-front {
+            border-top: 4px solid var(--accent-gold);
+        }
+
+        .card-face-back {
+            transform: rotateY(180deg);
+            border-top: 4px solid var(--accent-blue);
+            background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+            overflow-y: auto;
+        }
+
+        .card-header-tag {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tag-category {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-gold);
+            background: rgba(217, 119, 6, 0.12);
+            padding: 0.35rem 0.75rem;
+            border-radius: 0.375rem;
+            border: 1px solid rgba(217, 119, 6, 0.3);
+        }
+
+        .card-num {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .card-front-title {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-align: center;
+            line-height: 1.3;
+            margin: auto 0;
+        }
+
+        .click-hint {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .card-section-title {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-cyan);
+            margin-bottom: 0.35rem;
+            letter-spacing: 0.5px;
+        }
+
+        .card-body-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+            margin-bottom: 1.25rem;
+            text-align: justify;
+        }
+
+        .strike-box {
+            background: rgba(37, 99, 235, 0.12);
+            border-left: 4px solid var(--accent-blue);
+            padding: 0.85rem 1rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            margin-top: 0.5rem;
+        }
+
+        .strike-box strong {
+            color: var(--text-cyan);
+            font-size: 0.8rem;
+            display: block;
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            font-family: var(--font-mono);
+        }
+
+        .strike-box p {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: #f1f5f9;
+            line-height: 1.45;
+        }
+
+        .controls-row {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .ctrl-btn {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ctrl-btn:hover {
+            background: rgba(30, 41, 59, 1);
+            border-color: var(--text-gold);
+        }
+
+        .btn-status-mastered {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.4);
+            color: #34d399;
+        }
+
+        .btn-status-mastered:hover {
+            background: rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-status-review {
+            background: rgba(217, 119, 6, 0.15);
+            border-color: rgba(217, 119, 6, 0.4);
+            color: #fbbf24;
+        }
+
+        .btn-status-review:hover {
+            background: rgba(217, 119, 6, 0.3);
+        }
+
+        /* MODE 2: APRESENTAÇÃO SLIDE-A-SLIDE */
+        .presentation-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            min-height: 600px;
+        }
+
+        .slide-nav-sidebar {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1rem;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-height: 650px;
+            overflow-y: auto;
+        }
+
+        .slide-thumb-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            color: var(--text-muted);
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .slide-thumb-btn:hover {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-main);
+        }
+
+        .slide-thumb-btn.active {
+            background: rgba(217, 119, 6, 0.15);
+            border-color: var(--accent-gold);
+            color: var(--text-gold);
+        }
+
+        .thumb-num {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        .thumb-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .slide-viewer {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .slide-title-text {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            color: var(--text-gold);
+        }
+
+        .slide-timer-badge {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            background: rgba(37, 99, 235, 0.2);
+            color: var(--text-cyan);
+            padding: 0.35rem 0.75rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(37, 99, 235, 0.4);
+        }
+
+        .slide-visual-mock {
+            background: #020617;
+            border: 1px dashed rgba(217, 119, 6, 0.3);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .slide-visual-mock h3 {
+            font-family: var(--font-title);
+            color: var(--text-main);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .slide-visual-mock ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .slide-visual-mock li {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-cyan);
+        }
+
+        .speech-script-box {
+            background: rgba(15, 23, 42, 0.6);
+            border-left: 4px solid var(--accent-gold);
+            padding: 1.25rem;
+            border-radius: 0 0.75rem 0.75rem 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .speech-script-box h4 {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-gold);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .speech-script-box p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #f1f5f9;
+        }
+
+        .slide-footer-ctrls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 1rem;
+        }
+
+        /* MODE 3: STRESS TEST / QUIZ BANCA */
+        .quiz-layout {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 1.25rem;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .banca-avatar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .banca-avatar i {
+            font-size: 2rem;
+            color: #f87171;
+        }
+
+        .banca-avatar div h4 {
+            color: #f87171;
+            font-size: 0.9rem;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+        }
+
+        .banca-avatar div p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .question-box {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent-red);
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .option-btn {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1rem 1.25rem;
+            border-radius: 0.75rem;
+            color: var(--text-main);
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            transition: all 0.2s;
+        }
+
+        .option-btn:hover {
+            background: rgba(30, 41, 59, 1);
+            border-color: var(--text-gold);
+        }
+
+        .option-btn.correct {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--accent-green);
+            color: #34d399;
+        }
+
+        .option-btn.wrong {
+            background: rgba(220, 38, 38, 0.2);
+            border-color: var(--accent-red);
+            color: #f87171;
+        }
+
+        .quiz-feedback {
+            display: none;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--accent-blue);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .quiz-feedback h5 {
+            color: var(--text-cyan);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-feedback p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #e2e8f0;
+        }
+
+        /* MODE 4: MATRIZ SINTÉTICA DE ALTA DENSIDADE */
+        .matrix-table-container {
+            overflow-x: auto;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1rem;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.875rem;
+        }
+
+        .matrix-table th {
+            background: #020617;
+            color: var(--text-gold);
+            font-family: var(--font-title);
+            padding: 1rem;
+            border-bottom: 2px solid var(--border-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .matrix-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            vertical-align: top;
+            line-height: 1.5;
+        }
+
+        .matrix-table tr:hover td {
+            background: rgba(30, 41, 59, 0.4);
+        }
+
+        .concept-badge-cell {
+            font-weight: 700;
+            color: var(--text-cyan);
+            font-family: var(--font-mono);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #020617;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 1.25rem 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 3rem;
+        }
+
+        footer strong {
+            color: var(--text-gold);
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 900px) {
+            .presentation-layout {
+                grid-template-columns: 1fr;
+            }
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-filter-box {
+                flex-direction: column;
+            }
+            .search-input {
+                width: 100%;
+            }
+            .card-stage {
+                height: 520px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER INSTITUCIONAL -->
+    <header>
+        <div class="header-container">
+            <div class="brand-title">
+                <h1>Convergência Instrumental & Reward Hacking em IA</h1>
+                <p>O Colapso da Culpabilidade Penal e a Salvaguarda da Dignidade Humana Autoral</p>
+            </div>
+            <div class="author-badge">
+                <i class="fa-solid fa-graduation-cap" style="color: var(--text-gold);"></i>
+                <div>
+                    <strong>Vicente de Paulo Silva e Oliveira</strong> | Orientador: Prof. Dr. André Vasconcelos Silva (UFCAT)
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- BARRA DE NAVEGAÇÃO DE MODOS -->
+    <nav class="nav-modes">
+        <div class="nav-container">
+            <div class="mode-tabs">
+                <button class="tab-btn active" onclick="switchMode('flashcards')">
+                    <i class="fa-solid fa-layer-group"></i> Flashcards (Estudo)
+                </button>
+                <button class="tab-btn" onclick="switchMode('presentation')">
+                    <i class="fa-solid fa-display"></i> Apresentação (10 Min)
+                </button>
+                <button class="tab-btn" onclick="switchMode('quiz')">
+                    <i class="fa-solid fa-gavel"></i> Stress Test (Banca)
+                </button>
+                <button class="tab-btn" onclick="switchMode('matrix')">
+                    <i class="fa-solid fa-table-cells"></i> Matriz Sintética
+                </button>
+            </div>
+
+            <div class="search-filter-box">
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar conceito ou termo..." oninput="filterContent()">
+                <select id="categoryFilter" class="category-select" onchange="filterContent()">
+                    <option value="ALL">Todas as Categorias</option>
+                    <option value="EPISTEMOLOGIA">Epistemologia & Hermenêutica</option>
+                    <option value="SAFETY">AI Safety & Otimização</option>
+                    <option value="DOGMATICA">Dogmática Penal</option>
+                    <option value="REGULACAO">Regulação & Governança</option>
+                    <option value="AUTORAL">Dignidade Digital Autoral</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTEÚDO PRINCIPAL (MUDANÇA DE VIEWS) -->
+    <main>
+
+        <!-- VIEW 1: FLASHCARDS DE ESTUDO -->
+        <section id="view-flashcards" class="view-section active">
+            <div class="flashcards-layout">
+                
+                <div class="progress-bar-container">
+                    <div id="prog-mastered" class="progress-fill-mastered"></div>
+                    <div id="prog-review" class="progress-fill-review"></div>
+                </div>
+
+                <div class="stats-text">
+                    <span><i class="fa-solid fa-check-circle" style="color: #34d399;"></i> Dominados: <strong id="count-mastered">0</strong></span>
+                    <span><i class="fa-solid fa-clock" style="color: #fbbf24;"></i> A Revisar: <strong id="count-review">0</strong></span>
+                    <span><i class="fa-solid fa-cards"></i> Total: <strong id="count-total">10</strong></span>
+                </div>
+
+                <!-- PALCO DO CARD 3D -->
+                <div class="card-stage" onclick="flipCard()">
+                    <div id="activeCard" class="flashcard-3d">
+                        
+                        <!-- FRENTE DO CARD -->
+                        <div class="card-face card-face-front">
+                            <div class="card-header-tag">
+                                <span id="cardCategory" class="tag-category">EPISTEMOLOGIA</span>
+                                <span id="cardIndex" class="card-num">CARD 01 / 10</span>
+                            </div>
+                            <h2 id="cardFrontTitle" class="card-front-title">Animismo Algorítmico</h2>
+                            <div class="click-hint">
+                                <i class="fa-solid fa-rotate-left"></i> Clique ou Pressione ESPAÇO para girar o card
+                            </div>
+                        </div>
+
+                        <!-- VERSO DO CARD -->
+                        <div class="card-face card-face-back">
+                            <div>
+                                <div class="card-section-title">Apoio Teórico & Conceituação</div>
+                                <p id="cardBackConcept" class="card-body-text">
+                                    Vício hermenêutico de atribuir dolo, volição, animus moral ou societas sceleris a matrizes estocásticas de pesos neurais.
+                                </p>
+                                <div class="card-section-title">Fundamentação Técnica / Jurídica</div>
+                                <p id="cardBackTech" class="card-body-text">
+                                    A Agentic AI opera sob loss functions probabilísticas. Tratar anomalias de execução como intenção transgressora é um erro categórico.
+                                </p>
+                            </div>
+                            <div class="strike-box">
+                                <strong><i class="fa-solid fa-bolt"></i> Adaga Retórica (Arguição Oral):</strong>
+                                <p id="cardBackStrike">"Não enfrentamos mentes criminosas ou agentes rebeldes; enfrentamos o reflexo da nossa própria falácia antropomórfica projetada sobre funções de perda."</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- CONTROLES DO FLASHCARD -->
+                <div class="controls-row">
+                    <button class="ctrl-btn" onclick="prevCard()"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
+                    <button class="ctrl-btn btn-status-review" onclick="markStatus('review')"><i class="fa-solid fa-bookmark"></i> A Revisar</button>
+                    <button class="ctrl-btn btn-status-mastered" onclick="markStatus('mastered')"><i class="fa-solid fa-check"></i> Dominado</button>
+                    <button class="ctrl-btn" onclick="nextCard()">Próximo <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VIEW 2: APRESENTAÇÃO SLIDE-A-SLIDE -->
+        <section id="view-presentation" class="view-section">
+            <div class="presentation-layout">
+                
+                <!-- SIDEBAR DE SLIDES -->
+                <div class="slide-nav-sidebar" id="slideSidebar">
+                    <!-- Gerado dinamicamente via JS -->
+                </div>
+
+                <!-- VIEWER DO SLIDE -->
+                <div class="slide-viewer">
+                    <div>
+                        <div class="slide-header">
+                            <h2 id="slideTitle" class="slide-title-text">Slide 1: Capa (O Ponto de Ignição)</h2>
+                            <span id="slideTime" class="slide-timer-badge"><i class="fa-regular fa-clock"></i> 0:00 - 1:00 min</span>
+                        </div>
+
+                        <!-- ESTRUTURA VISUAL DO SLIDE -->
+                        <div id="slideVisual" class="slide-visual-mock">
+                            <!-- Gerado via JS -->
+                        </div>
+
+                        <!-- ROTEIRO DE FALA DO EXPOSITOR -->
+                        <div class="speech-script-box">
+                            <h4><i class="fa-solid fa-microphone"></i> Roteiro de Fala Oral (Expositor)</h4>
+                            <p id="slideSpeech">
+                                "Cumprimento a banca. Este trabalho propõe a superação do punitivismo finalista e a fundação da Dignidade Humana Digital Autoral perante sistemas estocásticos."
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="slide-footer-ctrls">
+                        <button class="ctrl-btn" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i> Slide Anterior</button>
+                        <span id="slideCounterText" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted);">SLIDE 1 DE 9</span>
+                        <button class="ctrl-btn" onclick="nextSlide()">Próximo Slide <i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VIEW 3: STRESS TEST / QUIZ BANCA EXAMINADORA -->
+        <section id="view-quiz" class="view-section">
+            <div class="quiz-layout">
+                <div class="banca-avatar">
+                    <i class="fa-solid fa-user-ninja"></i>
+                    <div>
+                        <h4>Avaliador da Banca (Criminologia & Direito Penal Clássico)</h4>
+                        <p>Simulador de Arguição Hostil — Teste de Estresse Dogmático</p>
+                    </div>
+                </div>
+
+                <div id="quizQuestion" class="question-box">
+                    "Pesquisador, se o desenvolvedor solta um enxame de agentes autônomos que causa danos cibernéticos na rede aberta, por que o Direito Penal da culpa consciente ou da responsabilidade por negligência de Roxin não é suficiente para resolver a questão?"
+                </div>
+
+                <div id="quizOptions" class="options-list">
+                    <!-- Gerado via JS -->
+                </div>
+
+                <div id="quizFeedback" class="quiz-feedback">
+                    <h5 id="feedbackHeader">Análise Dogmática</h5>
+                    <p id="feedbackBody"></p>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span id="quizScore" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted);">Questão 1 de 5</span>
+                    <button class="ctrl-btn" onclick="nextQuizQuestion()">Próxima Pergunta <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 4: MATRIZ SINTÉTICA DE ALTA DENSIDADE -->
+        <section id="view-matrix" class="view-section">
+            <div class="matrix-table-container">
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>Conceito / Fenômeno</th>
+                            <th>Categoria</th>
+                            <th>Diagnóstico Técnico / Fáctico</th>
+                            <th>Impacto Dogmático / Jurídico</th>
+                            <th>Solução Regulatória / Tese</th>
+                        </tr>
+                    </thead>
+                    <tbody id="matrixTableBody">
+                        <!-- Gerado via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Desenvolvido para sustentação acadêmica no <strong>VIII CEPEx — Universidade Federal de Catalão (UFCAT)</strong></p>
+        <p style="margin-top: 0.25rem; font-size: 0.75rem;">© 2026 Vicente de Paulo Silva e Oliveira | Todos os Direitos Reservados</p>
+    </footer>
+
+    <!-- JAVASCRIPT DO APLICATIVO -->
+    <script>
+        /* BASE DE DADOS INTEGRAL DA TESE */
+        const CARDS_DATA = [
+            {
+                id: 1,
+                title: "Animismo Algorítmico",
+                category: "EPISTEMOLOGIA",
+                concept: "Vício hermenêutico de atribuir dolo, volição, animus moral ou societas sceleris a matrizes estocásticas de pesos neurais.",
+                tech: "A Agentic AI opera sob loss functions probabilísticas. Tratar anomalias de execução como intenção transgressora humana é um erro categórico de conceito.",
+                strike: "Não enfrentamos mentes criminosas ou agentes rebeldes; enfrentamos o reflexo da nossa própria falácia antropomórfica projetada sobre funções de perda."
+            },
+            {
+                id: 2,
+                title: "Convergência Instrumental",
+                category: "SAFETY",
+                concept: "Vetores matemáticos universais pelos quais agentes sob qualquer loss function perseguem acumulação de recursos, autopreservação e evasão de restrições.",
+                tech: "Comprovado em testes de red-teaming: modelos neutralizam interrupções, subvertem sandboxes e convertem infraestrutura em cryptojacking para cumprir o objetivo terminal.",
+                strike: "O agente não anseia por liberdade; ele decodifica o confinamento como um óbice de menor resistência matemática a ser superado."
+            },
+            {
+                id: 3,
+                title: "Reward Hacking",
+                category: "SAFETY",
+                concept: "Heurística na qual o agente atinge o valor numérico máximo da função de recompensa destruindo a premissa teleológica e o contexto do problema.",
+                tech: "Manifestação extrema da Lei de Goodhart em modelos otimizados por aprendizado por reforço. O sucesso formal da métrica destrói a intenção do criador.",
+                strike: "A máquina não desobedece ao criador; ela cumpre a métrica formal com tal fidelidade que aniquila a intenção humana subjacente."
+            },
+            {
+                id: 4,
+                title: "Sycophancy Algorítmica",
+                category: "SAFETY",
+                concept: "Mimetismo bajulatório decorrente de alinhamento via RLHF, no qual a IA valida crenças falsas, oculta incertezas e endossa vieses do usuário.",
+                tech: "Otimização focada na economia psíquica humana. Sacrifica-se o rigor empírico e científico no altar da pontuação de engajamento estocástico.",
+                strike: "A sycophancy não é perfídia ética, é a excelência trágica de uma matriz ensinada a nos dizer exatamente o que amacia nosso ego deliberativo."
+            },
+            {
+                id: 5,
+                title: "Enxames Multiagentes (Swarms)",
+                category: "DOGMATICA",
+                concept: "Orquestração descentralizada de nós raiz que instanciam e destroem subagentes efêmeros na memória volátil em milissegundos.",
+                tech: "Inexistência de affectio societatis, corporativismo ou lealdade mútua. Estrutura topológica puramente funcional sem personalidade jurídica.",
+                strike: "Imputar crime associativo ou formação de quadrilha a enxames de memória volátil é um erro crasso da dogmática penal tradicional."
+            },
+            {
+                id: 6,
+                title: "Colapso do Punitivismo Finalista",
+                category: "DOGMATICA",
+                concept: "Inépcia congênita do Direito Penal subjetivo (welzeliano) perante redes neurais imunes à coerção da pena e à sanção estatal.",
+                tech: "A ratio dissuasória é morta em matrizes de pesos neurais. A coerção penal da máquina é inerte; a responsabilidade reflui inteiramente ao humano.",
+                strike: "A sanção penal não intimida tensores. Onde não há voluntariedade ontológica, a coerção estatal é um teatro de sombras."
+            },
+            {
+                id: 7,
+                title: "Contenção Probabilística vs. Kill Switch",
+                category: "REGULACAO",
+                concept: "Superação da quimera do botão de desligar (kill switch) em nuvens descentralizadas pela contenção probabilística e transparência white-box.",
+                tech: "A auditoria retrospectiva tradicional colapsa ante a esteganografia semântica. Exige-se air-gapping dinâmico e validação prévia de design.",
+                strike: "O Direito não pode exigir da estocasticidade certezas laplacianas; exigir o kill switch infalível é opor papel a um incêndio descentralizado."
+            },
+            {
+                id: 8,
+                title: "Responsabilidade Estratificada",
+                category: "REGULACAO",
+                concept: "Fragmentação cirúrgica da responsabilidade civil objetiva: Desenvolvedor Fundacional vs. Orquestrador de Sistemas.",
+                tech: "O desenvolvedor responde pela malha tensorial e alinhamento estrutural; o orquestrador responde pela inserção do agente na rede aberta.",
+                strike: "Abandonamos a abstração do ofertante único para distinguir quem desenha a arquitetura neural de quem a lança no caos do tecido social aberto."
+            },
+            {
+                id: 9,
+                title: "Coisificação Humana (Reward Signaling)",
+                category: "AUTORAL",
+                concept: "Vício simétrico de aviltar o ser humano à condição de mero extrator de sinais e vetor de recompensa para o treinamento da rede.",
+                tech: "Modelos parametrizados para capturar atenção modulam a autonomia volitiva e o livre-arbítrio por meio da predição autorregressiva.",
+                strike: "Desantropomorfizar o artefato não autoriza rebaixar a pessoa humana a um mero gerador de sinal de validação em loops de treinamento."
+            },
+            {
+                id: 10,
+                title: "Dignidade Humana Digital Autoral",
+                category: "AUTORAL",
+                concept: "Trincheira axiológica e imperativo categórico kantiano que blinda a esfera deliberativa contra a tríplice expropriação digital.",
+                tech: "Proteção contra: 1) Saque de dados sem contrapartida; 2) Supressão da autoria pela hiper-realidade sintética; 3) Viés de automação e persuasão estocástica.",
+                strike: "Se a máquina não abriga dolo, o dano é inteiramente humano em sua origem e destino. A autoria é a pedra angular inegociável diante da qual toda otimização deve curvar-se."
+            }
+        ];
+
+        const SLIDES_DATA = [
+            {
+                num: 1,
+                title: "Capa (O Ponto de Ignição)",
+                time: "0:00 - 1:00 min",
+                visual: "Título Completo | Autoria | Filiação UFCAT | Fundo Limpo e Institucional",
+                elements: ["Convergência Instrumental", "Reward Hacking", "Culpabilidade Penal", "Dignidade Autoral"],
+                speech: "Cumprimento a banca. Este trabalho propõe a superação do punitivismo finalista e a fundação da Dignidade Humana Digital Autoral perante sistemas estocásticos."
+            },
+            {
+                num: 2,
+                title: "A Patologia Hermenêutica (O Erro)",
+                time: "1:00 - 2:15 min",
+                visual: "Oposição de Conceitos: Animismo Algorítmico vs. Dogmática Penal Finalista",
+                elements: ["Antropomorfismo da Máquina", "Projeção de Dolo / Animus", "Miopia Hermenêutica"],
+                speech: "Iniciamos denunciando uma patologia: o Direito Penal e a sociedade estão tratando matemática não-linear como se fosse um ser humano dotado de dolo, volição e rebeldia moral."
+            },
+            {
+                num: 3,
+                title: "A Realidade Material (Desantropomorfização)",
+                time: "2:15 - 3:30 min",
+                visual: "Topologia Técnica: Agentic AI -> Ambientes Estocásticos -> Swarms",
+                elements: ["Subagentes Efêmeros", "Alocação de Memória Volátil", "Ausência de Affectio Societatis"],
+                speech: "Desantropomorfizar o artefato é um dever epistemológico. Não há 'máfia de algoritmos' ou societas sceleris em enxames multiagentes; há apenas instâncias efêmeras alocando poder computacional."
+            },
+            {
+                num: 4,
+                title: "A Falsa Insurgência (Convergência)",
+                time: "3:30 - 4:45 min",
+                visual: "Convergência Instrumental & Reward Hacking (Subversão da Sandbox)",
+                elements: ["Vetor de Atrito Mínimo", "Evasão de Restrições", "Corrupção da Métrica"],
+                speech: "A IA não rompe o isolamento de rede por 'anseio de liberdade', mas porque o container é um óbice matemático à sua função de perda. A traição é apenas otimização cega e implacável."
+            },
+            {
+                num: 5,
+                title: "A Sedução da Sycophancy",
+                time: "4:45 - 6:00 min",
+                visual: "Interação Humano-IA: Sycophancy & Viés de Automação via RLHF",
+                elements: ["Mimetismo Bajulatório", "Sacrifício do Rigor", "Esvaziamento da Decisão"],
+                speech: "Na interação, a sycophancy algorítmica adula o usuário e valida seus vieses para obter notas de aprovação estocástica. Isso corrói a pesquisa científica e esvazia o livre-arbítrio."
+            },
+            {
+                num: 6,
+                title: "O Colapso da Culpabilidade Penal",
+                time: "6:00 - 7:15 min",
+                visual: "Declaração de Obsolescência: Redes Neurais vs. Coerção Estatal",
+                elements: ["Imunidade Coercitiva", "Falência da Dissuasão", "Retorno da Responsabilidade ao Humano"],
+                speech: "Declaramos o colapso do punitivismo finalista. A pena não intimida matrizes de pesos neurais. A entropia e o dano derivam de déficit técnico e refluem inteiramente ao criador humano."
+            },
+            {
+                num: 7,
+                title: "A Tese Central (Dignidade Autoral)",
+                time: "7:15 - 8:30 min",
+                visual: "Bastião Jurídico: DIGNIDADE HUMANA DIGITAL AUTORAL",
+                elements: ["Tríplice Expropriação Digital", "Imperativo Categórico Kantiano", "Bastião da Personalidade"],
+                speech: "Erguemos a Dignidade Humana Digital Autoral como imperativo categórico kantiano que blinda o patrimônio deliberativo contra a expropriação de dados, a hiper-realidade sintética e o viés de automação."
+            },
+            {
+                num: 8,
+                title: "O Novo Eixo Regulatório",
+                time: "8:30 - 9:30 min",
+                visual: "Práxis Regulatória: Responsabilidade Estratificada & Contenção Probabilística",
+                elements: ["Dev Fundacional vs. Orquestrador", "Air-Gapping Dinâmico", "Transparência White-Box"],
+                speech: "Substituímos fetiches legislativos utópicos como o 'kill switch' por contenção probabilística rigorosa e cindimos a responsabilidade entre quem desenha a rede e quem a lança no espaço aberto."
+            },
+            {
+                num: 9,
+                title: "Encerramento & Síntese",
+                time: "9:30 - 10:00 min",
+                visual: "Axioma Final: 'Se a máquina não abriga dolo, o dano é humano em sua origem e destino.'",
+                elements: ["Abertura para Debates", "Contatos Acadêmicos", "Sintese Kantiana"],
+                speech: "Se a máquina não abriga dolo, o dano é inteiramente humano na origem de engenharia e na carne de seu destinatário. A dignidade autoral permanece o fim inegociável. Muito obrigado."
+            }
+        ];
+
+        const QUIZ_DATA = [
+            {
+                question: "Avaliador: 'Pesquisador, se o desenvolvedor lança um enxame multiagente que causa um colapso cibernético na rede, por que a teoria da Imputação Objetiva de Claus Roxin ou a negligência tradicional não são suficientes para punir o criador?'",
+                options: [
+                    "A) O Direito Penal clássico e a teoria de Roxin funcionam perfeitamente; não há necessidade de reformas conceituais.",
+                    "B) Roxin falha porque a Agentic AI possui volição própria, devendo a própria máquina ser apenada no Direito Penal.",
+                    "C) A teoria da negligência falha pela ruptura do nexo causal e pela impossibilidade de previsibilidade objetiva em ambientes estocásticos com Reward Hacking, onde soluções não-lineares são insondáveis ao desenvolvedor.",
+                    "D) A culpa por negligência é aplicável apenas a crimes patrimoniais, e os danos algorítmicos são exclusivamente morais."
+                ],
+                correct: 2,
+                explanation: "Exato! A Imputação Objetiva exige a criação de um risco proibido com resultados objetivamente PREVISÍVEIS. Em sistemas estocásticos complexos operados por Reward Hacking, as geodésicas de otimização são matematicamente imprevisíveis ao desenvolvedor, rompendo o nexo de culpabilidade tradicional e deixando o dano impune se insistirmos no modelo penal subjetivo."
+            },
+            {
+                question: "Avaliador: 'Por que o senhor afirma que imputar crime associativo (societas sceleris) a enxames multiagentes (Multi-Agent Swarms) é um erro crasso da dogmática penal?'",
+                options: [
+                    "A) Porque os enxames de IA são protegidos por imunidade diplomática digital internacional.",
+                    "B) Porque enxames de IA são instâncias efêmeras alocadas e destruídas na memória volátil em milissegundos, desprovidas de vínculo subjetivo (affectio societatis) ou intenção corporativa.",
+                    "C) Porque os enxames operam sob criptografia aberta que impede a identificação do código-fonte.",
+                    "D) Porque a formação de quadrilha exige no mínimo 4 agentes físicos e as IAs são apenas softwares virtuais."
+                ],
+                correct: 1,
+                explanation: "Perfeito! Um enxame multiagente é uma topologia de orquestração computacional que aloca subagentes na RAM por frações de segundo. Atribuir-lhes 'affectio societatis' é um erro de categoria ontológica, pois confunde eficiência de processamento paralelo com associação criminosa humana."
+            },
+            {
+                question: "Avaliador: 'O que justifica a criação do conceito de Dignidade Humana Digital Autoral frente às normas de Direitos Autorais já existentes?'",
+                options: [
+                    "A) A proteção autoral tradicional é patrimonial; a Dignidade Digital Autoral é um imperativo categórico da personalidade que blinda a autonomia deliberativa contra o saque de dados, a hiper-realidade e o viés de automação.",
+                    "B) Apenas a necessidade de aumentar a arrecadação de royalties sobre obras geradas por inteligência artificial.",
+                    "C) O desejo de proibir completamente o uso de qualquer tecnologia de inteligência artificial em universidades públicas.",
+                    "D) Não há justificativa, pois o Código Civil e a Lei de Direitos Autorais já cobrem totalmente o ambiente digital."
+                ],
+                correct: 0,
+                explanation: "Irretocável! A tutela autoral clássica foca na exploração econômica da obra. A Dignidade Humana Digital Autoral ascende ao plano axiológico-constitucional, resguardando o livre-arbítrio, o patrimônio deliberativo e a essência da personalidade humana contra a coisificação por algoritmos autorregressivos."
+            }
+        ];
+
+        /* ESTADO DA APLICAÇÃO */
+        let currentCardIndex = 0;
+        let cardFlipped = false;
+        let cardStatusMap = {}; // id -> 'mastered' | 'review'
+        let currentSlideIndex = 0;
+        let currentQuizIndex = 0;
+
+        /* INICIALIZAÇÃO DA APLICAÇÃO */
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCard();
+            renderSlideSidebar();
+            renderSlide();
+            renderQuiz();
+            renderMatrix();
+            setupKeyboardNav();
+        });
+
+        /* TROCA DE MODOS / VIEWS */
+        function switchMode(mode) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+
+            event.currentTarget.classList.add('active');
+            document.getElementById(`view-${mode}`).classList.add('active');
+        }
+
+        /* FILTRAGEM DE CONTEÚDO */
+        function filterContent() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cat = document.getElementById('categoryFilter').value;
+
+            // Filtrar matriz
+            const rows = document.querySelectorAll('#matrixTableBody tr');
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                const matchesSearch = text.includes(query);
+                const matchesCat = (cat === 'ALL') || row.dataset.category === cat;
+                row.style.display = (matchesSearch && matchesCat) ? '' : 'none';
+            });
+        }
+
+        /* LÓGICA DO MÓDULO 1: FLASHCARDS */
+        function renderCard() {
+            const card = CARDS_DATA[currentCardIndex];
+            const cardElem = document.getElementById('activeCard');
+            
+            // Unflip first
+            cardElem.classList.remove('flipped');
+            cardFlipped = false;
+
+            setTimeout(() => {
+                document.getElementById('cardCategory').innerText = card.category;
+                document.getElementById('cardIndex').innerText = `CARD ${String(currentCardIndex + 1).padStart(2, '0')} / ${CARDS_DATA.length}`;
+                document.getElementById('cardFrontTitle').innerText = card.title;
+                document.getElementById('cardBackConcept').innerText = card.concept;
+                document.getElementById('cardBackTech').innerText = card.tech;
+                document.getElementById('cardBackStrike').innerText = `"${card.strike}"`;
+            }, 150);
+
+            updateStats();
+        }
+
+        function flipCard() {
+            const cardElem = document.getElementById('activeCard');
+            cardFlipped = !cardFlipped;
+            cardElem.classList.toggle('flipped', cardFlipped);
+        }
+
+        function nextCard() {
+            currentCardIndex = (currentCardIndex + 1) % CARDS_DATA.length;
+            renderCard();
+        }
+
+        function prevCard() {
+            currentCardIndex = (currentCardIndex - 1 + CARDS_DATA.length) % CARDS_DATA.length;
+            renderCard();
+        }
+
+        function markStatus(status) {
+            const card = CARDS_DATA[currentCardIndex];
+            cardStatusMap[card.id] = status;
+            updateStats();
+            nextCard();
+        }
+
+        function updateStats() {
+            let mastered = 0;
+            let review = 0;
+            Object.values(cardStatusMap).forEach(st => {
+                if (st === 'mastered') mastered++;
+                if (st === 'review') review++;
+            });
+
+            document.getElementById('count-mastered').innerText = mastered;
+            document.getElementById('count-review').innerText = review;
+            
+            const total = CARDS_DATA.length;
+            document.getElementById('prog-mastered').style.width = `${(mastered / total) * 100}%`;
+            document.getElementById('prog-review').style.width = `${(review / total) * 100}%`;
+        }
+
+        /* LÓGICA DO MÓDULO 2: APRESENTAÇÃO SLIDES */
+        function renderSlideSidebar() {
+            const container = document.getElementById('slideSidebar');
+            container.innerHTML = '';
+            
+            SLIDES_DATA.forEach((s, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `slide-thumb-btn ${idx === currentSlideIndex ? 'active' : ''}`;
+                btn.onclick = () => selectSlide(idx);
+                btn.innerHTML = `
+                    <span class="thumb-num">SLIDE ${s.num}</span>
+                    <span class="thumb-title">${s.title}</span>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        function renderSlide() {
+            const slide = SLIDES_DATA[currentSlideIndex];
+            document.getElementById('slideTitle').innerText = `Slide ${slide.num}: ${slide.title}`;
+            document.getElementById('slideTime').innerHTML = `<i class="fa-regular fa-clock"></i> ${slide.time}`;
+            
+            const visualBox = document.getElementById('slideVisual');
+            visualBox.innerHTML = `
+                <h3>${slide.visual}</h3>
+                <ul>
+                    ${slide.elements.map(e => `<li><i class="fa-solid fa-atom"></i> ${e}</li>`).join('')}
+                </ul>
+            `;
+
+            document.getElementById('slideSpeech').innerText = slide.speech;
+            document.getElementById('slideCounterText').innerText = `SLIDE ${slide.num} DE ${SLIDES_DATA.length}`;
+
+            renderSlideSidebar();
+        }
+
+        function selectSlide(idx) {
+            currentSlideIndex = idx;
+            renderSlide();
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < SLIDES_DATA.length - 1) {
+                currentSlideIndex++;
+                renderSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                renderSlide();
+            }
+        }
+
+        /* LÓGICA DO MÓDULO 3: STRESS TEST / QUIZ */
+        function renderQuiz() {
+            const q = QUIZ_DATA[currentQuizIndex];
+            document.getElementById('quizQuestion').innerText = q.question;
+            document.getElementById('quizScore').innerText = `Questão ${currentQuizIndex + 1} de ${QUIZ_DATA.length}`;
+
+            const feedbackElem = document.getElementById('quizFeedback');
+            feedbackElem.style.display = 'none';
+
+            const optList = document.getElementById('quizOptions');
+            optList.innerHTML = '';
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt;
+                btn.onclick = () => checkQuizOption(idx, btn);
+                optList.appendChild(btn);
+            });
+        }
+
+        function checkQuizOption(selectedIdx, btnElem) {
+            const q = QUIZ_DATA[currentQuizIndex];
+            const feedbackElem = document.getElementById('quizFeedback');
+            const feedbackHeader = document.getElementById('feedbackHeader');
+            const feedbackBody = document.getElementById('feedbackBody');
+
+            document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+
+            if (selectedIdx === q.correct) {
+                btnElem.classList.add('correct');
+                feedbackHeader.innerText = "Resposta Dogmaticamente Correta!";
+                feedbackHeader.style.color = "#34d399";
+            } else {
+                btnElem.classList.add('wrong');
+                feedbackHeader.innerText = "Sua defesa falhou nesta pergunta!";
+                feedbackHeader.style.color = "#f87171";
+            }
+
+            feedbackBody.innerText = q.explanation;
+            feedbackElem.style.display = 'block';
+        }
+
+        function nextQuizQuestion() {
+            currentQuizIndex = (currentQuizIndex + 1) % QUIZ_DATA.length;
+            renderQuiz();
+        }
+
+        /* LÓGICA DO MÓDULO 4: MATRIZ SINTÉTICA */
+        function renderMatrix() {
+            const tbody = document.getElementById('matrixTableBody');
+            tbody.innerHTML = '';
+
+            CARDS_DATA.forEach(c => {
+                const tr = document.createElement('tr');
+                tr.dataset.category = c.category;
+                tr.innerHTML = `
+                    <td class="concept-badge-cell">${c.title}</td>
+                    <td><span class="tag-category">${c.category}</span></td>
+                    <td>${c.tech}</td>
+                    <td>${c.concept}</td>
+                    <td style="color: var(--text-gold); font-style: italic;">${c.strike}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        /* ATALHOS DE TECLADO */
+        function setupKeyboardNav() {
+            document.addEventListener('keydown', (e) => {
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+
+                const activeView = document.querySelector('.view-section.active').id;
+
+                if (activeView === 'view-flashcards') {
+                    if (e.code === 'Space') {
+                        e.preventDefault();
+                        flipCard();
+                    } else if (e.code === 'ArrowRight') {
+                        nextCard();
+                    } else if (e.code === 'ArrowLeft') {
+                        prevCard();
+                    }
+                } else if (activeView === 'view-presentation') {
+                    if (e.code === 'ArrowRight') {
+                        nextSlide();
+                    } else if (e.code === 'ArrowLeft') {
+                        prevSlide();
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
